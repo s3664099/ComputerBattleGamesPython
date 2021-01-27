@@ -68,3 +68,8 @@ player has got close, missed, or hit the target. A score is also recorded, based
 player has hit. The more times the player gets close, before hitting the target, the higher the score.
 
 **Escape**
+
+This is another guessing game. This one the player has to guess a number that represents the robot's frequency
+There are a number of ways the player can die. I have set variables that can be adjusted to change the
+frequency though I have not written a difficulty setting function. The player dies if they either run out of
+goes, gets a frequecy that is too high (twice) or too low (twice)
