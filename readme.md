@@ -67,3 +67,4 @@ the computer calculates the location of the target, and how many turns the playe
 player has got close, missed, or hit the target. A score is also recorded, based on how close, and whether the
 player has hit. The more times the player gets close, before hitting the target, the higher the score.
 
+**Escape**
