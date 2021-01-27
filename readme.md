@@ -59,3 +59,11 @@ before a time limit is up. As with all of the games, I have added the extra comp
 do, which is having certain character worth more points than others. I have also added a difficulty
 function so the player can set a difficulty level, which means that the time limit is less for higher
 difficulties
+
+**Secret Weapon**
+
+This is a simple guessing game. You enter a difficulty that is greater than 3, and based on that difficulty
+the computer calculates the location of the target, and how many turns the player has (the higher the difficulty, the more turns). The player then enters co-ordinates, that the computer responds with whether the
+player has got close, missed, or hit the target. A score is also recorded, based on how close, and whether the
+player has hit. The more times the player gets close, before hitting the target, the higher the score.
+
