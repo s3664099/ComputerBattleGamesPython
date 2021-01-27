@@ -15,6 +15,14 @@ as it was executed on the older computers)
 
 [The book is now available online to download for free](https://drive.google.com/file/d/0Bxv0SsvibDMTVUExUjFhTURCSU0/view)
 
+## Executing the Games
+
+A *shebang* has been included in the files so that they can be executed directly from the
+command line. However, for that to work you will need to make the file executable. Since these
+games run only on Linux, you will need to go to the directory on the command line and type
+
+*chmod +x [game name].py*
+
 ## Issues
 
 <ins>Get/Inkey</ins>
