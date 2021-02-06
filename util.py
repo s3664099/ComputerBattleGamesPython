@@ -40,5 +40,5 @@ def input_with_timeout(prompt, timeout):
 
 	#If the time limit expires an error is thrown.
 	except TimeoutOccurred:
-		print("Too Late")
+		pass
 	return keypress
