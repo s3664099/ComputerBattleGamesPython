@@ -4,7 +4,7 @@ from inputimeout import inputimeout, TimeoutOccurred
 """
 Title: Util.py
 Author: David Sarkies
-Version: 1
+Version: 1.1
 Date: 26/1/2021
 
 This file holds functions that are likely to be used across multiple
@@ -16,6 +16,9 @@ the user will need to press enter to record the response.
 
 The following package is required:
 https://pypi.org/project/inputimeout/
+
+Update 7/2/2021
+Added a second input function that doesn't display 'too late'
 """
 
 def clear_screen():
@@ -32,6 +35,19 @@ def alarm_handler(signum, frame):
 #For the timeout
 def input_with_timeout(prompt, timeout):
 	
+	keypress = ""
+
+	#Waits for the user input
+	try:
+		keypress = inputimeout(prompt, timeout)
+
+	#If the time limit expires an error is thrown.
+	except TimeoutOccurred:
+		print("Too late!")
+	return keypress
+
+def input_with_timeout_no_comment(prompt, timeout):
+
 	keypress = ""
 
 	#Waits for the user input

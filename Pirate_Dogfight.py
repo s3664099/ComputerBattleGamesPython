@@ -1,11 +1,63 @@
 #!/usr/bin/env python3
 
-#Screen 75 spaces across - use that for image
+"""
+Title: Escape
+Author: Daniel Isaaman & Jenny Tyler
+Translator: David Sarkies
+Version: 1
+Date: 7/2/2021
+Source: Source: https://drive.google.com/file/d/0Bxv0SsvibDMTVUExUjFhTURCSU0/view
+
+This game can be found on page 20 of Computer Battle Games, and it a python3 translation. Due to the use of the $inkey/$get command in this game, it will no doubt be tricky to convert it into any of the other languages.
+
+The goal of the game is to shoot down the opponent and you do this by increasing
+/decreasing your speed until you are next to him/her, and then you shoot.
+A display is on the screen to show your relative position to your oppenant. If
+your opponent gets too far away from you (20 units), you will lose the game
+
+I have changed the text, and I have also added code so that if you are too far
+away from your opponent, you cannot shoot them. Further, you cannot shoot
+your opponent if you are in front.
+
+The difficulty is the use of the $Inkey. I have used a timed input, which
+expires after a second, however you need to press enter otherwise the command
+will not register.
+
+I experimented with the keyboard package for python, which detects a keypress,
+but unfortunately you can only use it if the program is running in root mode.
+It also would print the keypress to the screen, and didn't always detect it.
+However, it was the need to execute in root mode that I ended up dropping it.
+
+The controls are as follows:
+a - accellerate
+d - decellerate
+f - fire
+"""
 
 import util
 import time
 from random import randint
 
+#Sets the screen width based on an ubuntu terminal
+screen_width = 80
+
+#Displays the position of the planes. The opponent is always
+#in the centre of the screen
+def display_planes(distance):
+	print("{}him".format(get_distance(screen_width/2)))
+	print("{}you".format(get_distance((screen_width/2)+distance)))
+
+#Gets the distance of the plane from the edge of the screen
+def get_distance(length):
+	length = int(length)
+	display = ""
+
+	for x in range(length):
+		display +=" "
+
+	return display
+
+#Checks your position relative to the opponent
 def check_position(distance):
 	if distance<0:
 		return "Behind"
@@ -14,6 +66,7 @@ def check_position(distance):
 	else:
 		return "Level"
 
+#Checks your speed relative to the opponent
 def check_speed(velocity):
 	if velocity > 0:
 		return "Going faster"
@@ -22,24 +75,32 @@ def check_speed(velocity):
 	else:
 		return "The same speed"	
 
+#Gets the players move
 def get_move(velocity, distance):
+
+	#Checks to see if you are too far away from the oppoent
 	if abs(distance)>20:
 		return 1,distance,velocity
 	util.clear_screen()
 
+	#Displays your position relative to the opponent
 	print ("You are: {} {}".format(check_position(distance), check_speed(velocity)))
-	print(velocity, distance)
-	key = util.input_with_timeout(">",1)
-	print("key press {}".format(key))
+	print(display_planes(distance))
+
+	#Gets the input from the player
+	key = util.input_with_timeout_no_comment(">",1)
+
+	#Executes the players command
 	if key == 'a':
 		velocity += 1
 	elif key == 'd':
 		velocity -= 1
 	elif key == 'f':
+
+		#Executes the fire command and determines
+		#The result
 		print("Pew Pew Pew")
 		result = fire(velocity,distance)
-		print("Result {}".format(result))
-		result = 3
 		if result == 1:
 			print("Your shots fly over his wing, you are going too fast")
 		elif result == 4:
@@ -47,30 +108,34 @@ def get_move(velocity, distance):
 		elif result == 5:
 			print("He's behind you. You can't hit him")
 		elif result == 3:
-			print("Hello {}".format(result))
 			time.sleep(1)
-			print("After Sleep")
 			return result,distance,velocity
 		else:
-			print("Hello {}".format(result))
 			time.sleep(1)
-			print("After Sleep")
 			return result,distance,velocity
 
+	#Changes your position relative to the opponent
 	distance = distance + velocity
 	time.sleep(1)
 
 	return 0,distance,velocity
 
-
+#The fire function. Determines the response based on the positon
 def fire(velocity,distance):
 
+	#In front
 	if distance>0:
 		return 5
+
+	#Too far behind
 	elif distance<-2:
 		return 4
+	
+	#Going too fast/slow
 	elif abs(velocity)>2:
 		return 1
+
+	#Within striking distance, determines who hits who 
 	else:
 		if randint(1,10)>5:
 			return 2
@@ -79,6 +144,8 @@ def fire(velocity,distance):
 
 def main_game():
 
+	#Sets up the game and determines initial
+	#velocity and position
 	end_note = ""
 	continuing = True
 	util.clear_screen()
@@ -86,12 +153,12 @@ def main_game():
 	velocity = randint(-5,5)
 	distance = randint(1,4)*-1
 
+	#Game loop
 	while continuing:
 
 		result,distance, velocity = get_move(velocity, distance)
-		print(result)
-		print(result, distance, velocity)
 
+		#Determines the result of the game
 		if result == 1:
 			end_note = "He got away"
 			continuing = False
@@ -100,7 +167,6 @@ def main_game():
 			continuing = False
 		elif result == 3:
 			end_note = "He shot you first"
-			print("He shoots")
 			continuing = False
 
 	print(end_note)
