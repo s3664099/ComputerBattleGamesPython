@@ -45,6 +45,17 @@ for the user to press a key (or series of keys)
 I have yet to try it out though.
 No, it didn't work as I hoped it would.
 
+**Keyboard**
+There is a python package called [keyboard](https://pypi.org/project/keyboard/). This has a number of functions
+one of them involving detecting key presses. However, there are a couple of problems:
+
+1) When the key is pressed, it still appears on the screen (it doesn't with Inkey)
+2) It will detect specific keys as opposed to general keypresses (though I believe it can detect that)
+3) It will detect a key, not a combination of keys (though I looks like that is possible as well)
+4) You require root privileges to access the command, otherwise an error will be thrown
+
+I attempted to use it on one of the games, but unfortunately it didn't work as expected.
+
 <ins>Computer Crash</ins>
 I had already converted a number of the games across, but since I was using it for practice, silly me
 didn't save a copy, or upload it to github. As such, when my laptop failed, the linux partitions on the
@@ -72,4 +83,12 @@ player has hit. The more times the player gets close, before hitting the target,
 This is another guessing game. This one the player has to guess a number that represents the robot's frequency
 There are a number of ways the player can die. I have set variables that can be adjusted to change the
 frequency though I have not written a difficulty setting function. The player dies if they either run out of
-goes, gets a frequecy that is too high (twice) or too low (twice)
+goes, gets a frequecy that is too high (twice) or too low (twice).
+
+**Pirate Dogfight**
+
+This is more of an action/arcade game, where you have to match the speed, and location, of the opponent
+and then attempt to shoot them down. If the opponent gets too far away, then you lose. There is also a 50%
+chance that the opponent will shoot you instead of you shooting them. However, there is code that can show
+the opponent, and yourself, on the screen, which has been incorporated. You speed up/slow down/shoot using
+specific keys.

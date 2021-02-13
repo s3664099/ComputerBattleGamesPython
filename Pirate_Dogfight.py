@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Title: Escape
+Title: Pirate Dogfight
 Author: Daniel Isaaman & Jenny Tyler
 Translator: David Sarkies
 Version: 1
