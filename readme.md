@@ -92,3 +92,12 @@ and then attempt to shoot them down. If the opponent gets too far away, then you
 chance that the opponent will shoot you instead of you shooting them. However, there is code that can show
 the opponent, and yourself, on the screen, which has been incorporated. You speed up/slow down/shoot using
 specific keys.
+
+**Supersonic Bomber**
+
+This game requires you to select the correct item within a limited amount of 
+time. The player is given a graph, and the player must select the biggest graph
+from the list. The game runs for 10 turns, and each turn the time gets shorter
+and shorter. I have included a difficulty selection for the game, so that the
+higher the difficulty, the more selections the player has, and the shorter
+the time the player has to select them.

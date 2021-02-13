@@ -21,17 +21,24 @@ This game was pretty straight forward to transfer into python, though the timed
 input might be a bit tricky with other languages.
 
 I have added better responses for the completion, and have also added a 
-difficulty setting to make the game easier/harder.
-
+difficulty setting to make the game easier/harder. The difficulty setting
+increases the number of 'population centres' as well as lowering the time
+for the player to respond.
 """
 
 import util
 import time
 from random import randint
 
-
+#Sets up the round by setting the population of the cities
+#and printing out the graphs. Determines the city with the highest
+#population
 def set_up(cities, no_cities):
+
 	highest_pop = 0
+
+	#Populates the cities and determines the one
+	#With the highest population
 	for y in range(no_cities):
 		population = randint(1,10)
 		cities.append(population)
@@ -39,6 +46,9 @@ def set_up(cities, no_cities):
 			highest_pop = y 
 
 	util.clear_screen()
+
+	#Prints out the graph showing the size
+	#of the cities
 	for y in range(no_cities):
 		city_graph = str(y+1)+": "
 		if (y+1)<10:
@@ -46,10 +56,14 @@ def set_up(cities, no_cities):
 		for z in range(cities[y]):
 			city_graph += "**"
 		print(city_graph)
+
+	#Returns the cities and the highest population
 	return cities, highest_pop+1
 
+#Main game function
 def main_game():
 
+	#Sets the initial variables and gets difficulty
 	util.clear_screen()
 	print("Supersonic Bomber\n\n")
 	difficulty = set_difficulty()
@@ -58,6 +72,7 @@ def main_game():
 	no_cities = 5
 	time_diff = 2
 
+	#Determines the difficulty settings
 	if difficulty == "2":
 		no_cities = 10
 		time_diff = 1
@@ -65,11 +80,13 @@ def main_game():
 		no_cities = 15
 		time_diff = 0.5
 
+	#Executes ten rounds for the game
 	for x in range (10,0,-1):
 		cities.clear()
 		cities,highest_pop = set_up(cities, no_cities)			
 		score = get_input(highest_pop,score,x*time_diff)
 
+	#Tells the player their results
 	print("You hit {} out of 10".format(score))
 	print("high density targets")
 	if score == 10:
@@ -81,18 +98,23 @@ def main_game():
 	else:
 		print("Hey, you suck big time")
 		
+#Gets the player's input for the round
 def get_input(highest_pop,score,level):
 
 	keypress = util.input_with_timeout(">",level)
-	print(highest_pop)
-	print(keypress)
+
+	#Checks to see if the player got the correct input
+	#And adds one to score if so
 	if keypress == str(highest_pop):
 		score += 1
 		print("Boom!")
 	return score
 			
+#Sets the difficulty for the game
 def set_difficulty():
 
+	#Input loop, uses while true as will break out of
+	#loop if input valid 
 	while True:
 		print("Please select difficulty level")
 		print("1) Easy")
@@ -100,6 +122,7 @@ def set_difficulty():
 		print("3) Hard")
 		difficulty = input("> ")
 
+		#Validates the input. Returns if input is corrrect
 		if difficulty == "1" or difficulty == "2" or difficulty == "3":
 			return difficulty
 		print("Please enter either 1, 2 or 3")
