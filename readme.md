@@ -101,3 +101,13 @@ from the list. The game runs for 10 turns, and each turn the time gets shorter
 and shorter. I have included a difficulty selection for the game, so that the
 higher the difficulty, the more selections the player has, and the shorter
 the time the player has to select them.
+
+**Iceberg**
+
+This game prints out an 8x8 grid with an enemy ship and icebergs. The goal of the game is to attempt to
+get the enemy ship to crash into an iceberg. The AI is really primitive (considering that it is a game for
+some old 80s computers) in that it justs moves directly towards you (though I'm sure you could make it a
+little harder). I have basically written it as is, though I have made the text a little better, and used
+slightly different symbols, though they are all character based. Mind you, the game is quite difficult
+nonetheless. I have also added quit, and stand still options as well.
+
