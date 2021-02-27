@@ -7,6 +7,12 @@ min_icebergs = 4
 max_icebergs = 11
 no_icebergs = randint(min_icebergs,max_icebergs)
 map_size = 8
+enemy_x = 0
+enemy_y = 0
+enemy = 3
+player_x = 0
+player_y = 0
+player = 4
 
 def set_positions(game_map, ship):
 	ship_placed = False
@@ -17,7 +23,14 @@ def set_positions(game_map, ship):
 			game_map[ship_x][ship_y] = ship
 			return ship_x, ship_y
 	
-def build_map(game_map,enemy,player):
+def build_map(game_map):
+
+	global enemy_x 
+
+	global enemy_y
+	global player_x
+	global player_y
+
 	for x in range (no_icebergs):
 		x=randint(0,map_size-1)
 		y=randint(0,map_size-1)
@@ -26,7 +39,7 @@ def build_map(game_map,enemy,player):
 	enemy_x, enemy_y = set_positions(game_map,enemy)
 	player_x, player_y = set_positions(game_map,player)
 
-	return game_map, enemy_x, enemy_y, player_x, player_y
+	return game_map
 
 def print_map(game_map):
 
@@ -47,19 +60,33 @@ def print_map(game_map):
 	
 	print("==========")
 
-def main_game(game_map,enemy_x,enemy_y,player_x,player_y,enemy,player):
-	
+def main_game(game_map):
+
+	global enemy	
 	game_on = True
 	print_map(game_map)
 
 	while(game_on):
 		game_map[player_x][player_y] = 0
-		player_x,player_y = get_command(game_map,player_x,player_y)
+		get_command(game_map)
+		
+		if game_map[player_x][player_y] == 1: 
+			print("Crunch!!! You've crashed into an iceberg!")
+			return False
+		elif game_map[player_x][player_y] == enemy:
+			print("You have got too close to the enemy, you've been boarded")
+			return False
+
 		game_map[player_x][player_y] = player
 		util.clear_screen()
 		print_map(game_map)
 
-def get_command(game_map,player_x,player_y):
+def get_command(game_map):
+
+	global enemy_x 
+	global enemy_y
+	global player_x
+	global player_y
 
 	response = 0
 
@@ -67,30 +94,31 @@ def get_command(game_map,player_x,player_y):
 		move = input("Please enter your move (n,s,e,w): ")
 		
 		if move == 'n':
-
 			if player_x >0:
 				player_x -=1 
-				return player_x,player_y
+				return 
 			else:
 				response = 2
 		elif move == 's':
 			if player_x <map_size-1:
 				player_x +=1 
-				return player_x,player_y
+				return
 			else:
 				response = 2
 		elif move == 'e':
 			if player_y <map_size-1:
 				player_y +=1 
-				return player_x,player_y
+				return
 			else:
 				response = 2
 		elif move == 'w':
 			if player_y >0: 
 				player_y -=1 
-				return player_x,player_y
+				return
 			else:
 				response = 2
+		elif move == 'q':
+			quit()
 		else:
 			response = 1
 
@@ -104,15 +132,11 @@ def setup_game():
 
 	util.clear_screen()
 	game_map = [[0 for x in range(map_size)] for y in range(map_size)] 
-	enemy_x = 0
-	enemy_y = 0
-	enemy = 3
-	player_x = 0
-	player_y = 0
-	player = 4
 	print('Iceberg')
-	game_map, enemy_x, enemy_y, player_x, player_y = build_map(game_map,enemy,player)
-	main_game(game_map, enemy_x, enemy_y, player_x, player_y, enemy, player)
-
+	game_map = build_map(game_map)
+	result = main_game(game_map)
+	
+	if not result:
+		print("You Lose!")
 if __name__ == '__main__':
 	setup_game()
