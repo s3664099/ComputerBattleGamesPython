@@ -60,6 +60,23 @@ def print_map(game_map):
 	
 	print("==========")
 
+def move_enemy():
+
+	global enemy_x 
+	global enemy_y
+	global player_x
+	global player_y
+
+	if player_x - enemy_x < 0:
+		enemy_x -=1
+	elif player_x - enemy_x > 0:
+		enemy_x +=1
+	
+	if player_y - enemy_y <0:
+		enemy_y -=1
+	elif player_y-enemy_y >0:
+		enemy_y +=1 
+
 def main_game(game_map):
 
 	global enemy	
@@ -78,6 +95,20 @@ def main_game(game_map):
 			return False
 
 		game_map[player_x][player_y] = player
+
+		game_map[enemy_x][enemy_y] = 0
+		move_enemy()
+
+		if game_map[enemy_x][enemy_y] == 1:
+			print("Crash! The enemy has crashed into an iceberg!")
+			return True
+
+		game_map[enemy_x][enemy_y]=enemy		
+
+		if game_map[player_x][player_y] == enemy:
+			print("The enemy ship has caught you and boarded you")
+			return False
+
 		util.clear_screen()
 		print_map(game_map)
 
@@ -91,7 +122,11 @@ def get_command(game_map):
 	response = 0
 
 	while(True):
-		move = input("Please enter your move (n,s,e,w): ")
+
+		print("Moves: n,s,e,w")
+		print("q: quits game")
+		print("0: remain in position")
+		move = input("Please enter your move: ")
 		
 		if move == 'n':
 			if player_x >0:
@@ -119,6 +154,8 @@ def get_command(game_map):
 				response = 2
 		elif move == 'q':
 			quit()
+		elif move == '0':
+			return
 		else:
 			response = 1
 
@@ -138,5 +175,8 @@ def setup_game():
 	
 	if not result:
 		print("You Lose!")
+	else:
+		print("You win!")
+
 if __name__ == '__main__':
 	setup_game()
