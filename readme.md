@@ -111,3 +111,16 @@ little harder). I have basically written it as is, though I have made the text a
 slightly different symbols, though they are all character based. Mind you, the game is quite difficult
 nonetheless. I have also added quit, and stand still options as well.
 
+**Wizard's Wall**
+
+This was a rather tricky game to translate since there are a lot of mathematical equations that are used to
+determine whether the player has won or not. In fact, I'm still not quite sure whether I have managed to get
+all of the equations working. The second thing is that the original listing doesn't have any comments so I
+can't go through and determine whether I have completed it correctly. Sure, the game runs, but I'm not quite
+sure whether it runs the way it is supposed to. Further, the basic code is pretty horrid to follow.
+
+The idea is to knock down a wall, and you do that by selecting an angle and a speed. The wall can move at
+times, and if it moves too much, well, you die. The instructions are included in the game, and you also
+have a difficulty level too. However, translating this game reminds me of how much simpler modern languages
+are as opposed to the ones from my childhood.
+
