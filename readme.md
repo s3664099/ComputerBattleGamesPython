@@ -23,6 +23,8 @@ games run only on Linux, you will need to go to the directory on the command lin
 
 *chmod +x [game name].py*
 
+To execute the game *Missile!*, PyGame needs to be installed.
+
 ## Issues
 
 <ins>Get/Inkey</ins>
@@ -123,4 +125,25 @@ The idea is to knock down a wall, and you do that by selecting an angle and a sp
 times, and if it moves too much, well, you die. The instructions are included in the game, and you also
 have a difficulty level too. However, translating this game reminds me of how much simpler modern languages
 are as opposed to the ones from my childhood.
+
+**Missile!**
+
+I ended up using the PyGame library to create this game, namely because the code that was provided utilises
+the various computer's graphics (meaning that there is a separate listing for each of the machines - though
+the Commodore 64 isn't among them). The game is simple in that there is a jet that flies across the screen and
+you have three missiles which you need to use to shoot it down. If you hit the plane, you win, otherwise you
+you lose.
+
+It took me a bit to work it out, and I found that typing it out in the emulators that I found on the internet
+didn't seem to produce any working version (and I have to admit that typing games out on one of the 8-bit
+machines is so much more problematic than it is writing it on a modern computer, even using something like
+vim).
+
+Once I worked out how to use PyGame, creating this game, and even using proper icons, ended up being quite
+easy. In fact, I might go back and rewrite some of the games using PyGame - particularly since the Inkey
+problem doesn't exist there.
+
+For this game to work, you need to install PyGame, which can be done as follows:
+
+*pip3 install PyGame*
 
