@@ -42,10 +42,13 @@ def get_difficulty():
 		print("1) Easy")
 		print("2) Medium")
 		print("3) Hard")
+		print("4) Instructions")
 		difficulty = input()
 
 		if difficulty == '1' or difficulty == '2' or difficulty == '3':
 			correct_answer = True
+		elif difficulty == '4':
+			instructions()
 		else:
 			print("Please enter 1, 2, or 3")
 
@@ -59,6 +62,22 @@ def get_difficulty():
 		speed = 5
 
 	return speed
+
+#Displays the instructions for the game
+def instructions():
+	util.clear_screen()
+	print("Robot Invaders")
+	print("----- --------")
+	print()
+	print("You must act quickly. Robot invaders of all kinds are approaching. You")
+	print("have plenty ofweapons, but for each type of Robot you must select exactly")
+	print("the right one for it to have any effect. Code symbols for each Robot will flash up on your")
+	print("screen. Quickly press the key with that symbol on it - beware, some need the")
+	print("shift key too - and see how many Robot invaders you candestroy.")
+	print()
+	print("Press 'F1' to escape from the game")
+	input()
+	util.clear_screen()
 
 #Sets up the screen
 def set_screen():
