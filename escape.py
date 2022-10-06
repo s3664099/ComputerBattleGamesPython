@@ -111,38 +111,76 @@ def game_loop(frequency):
 	#Time has run out and sends flag saying player has died
 	return("You took too long. The robots have tortured you to death, the frequency was {}".format(frequency)), True
 
+#Asks if the player wants instructions
+def ask_instructions():
+
+	#Asks player if they would like instructions
+	answer = False
+
+	print("Would you like instructions (Y/N) ?")
+		
+	#Calls the yes or no function
+	answer = util.yes_or_no(answer)
+
+	#If yes calls the instructions function
+	if answer == True:
+		instructions()
+
+#Displays the instructions
+def instructions():
+
+	util.clear_screen()
+	print("Escape!")
+	print("=======")
+	print("The Robots have caught you, taken your weapons and locked you up. Suddenly") 
+	print("you remember you still have your sonar wristwatch, which can be tuned to ")
+	print("produce sounds of any frequency. If you can only find the resonant frequency")
+	print("of your Robot guards, they should vibrate so much they fall apart. You must")
+	print("be careful not to use frequencies that are too low or the building will")
+	print("vibrate and collapse on top of you. Ifyou go too high, you will get such")
+	print("a terrible headache you will have to give up. Can you escape the horrors")
+	print("ofthe Robot prison? (Look carefully at the program for a clue to the range")
+	print("of frequencies to try.)")
+	print("")
+	input("Press Enter to Continue")
+
 #Main game function
 def main():
 
 	util.clear_screen()
-	print("Escape")
+	print("Escape!")
 	print("There are three robots to take out. Guess their frequencies")
+	ask_instructions()
 
-	#Sets the robot number and default end message
-	robot = 0
-	end_message = "You have shut down all three robots. You can escape"
+	replay = True
 
-	#Loops through the robots
-	while robot < 3:
+	while replay:
+		#Sets the robot number and default end message
+		robot = 0
+		end_message = "You have shut down all three robots. You can escape"
 
-		#Sets the frequency and calls the main game loop
-		print("Robot number {}".format(robot+1))
-		frequency = randint(1,frequency_range)
-		print(frequency)
-		result, death = game_loop(frequency)
+		#Loops through the robots
+		while robot < 3:
 
-		#Checks to see if the player has died
-		if death == True:
-			end_message = result
-			robot = 5
-		else:
+			#Sets the frequency and calls the main game loop
+			print("Robot number {}".format(robot+1))
+			frequency = randint(1,frequency_range)
+			print(frequency)
+			result, death = game_loop(frequency)
 
-			#If not moves to the next robot
-			print(result)
-			robot +=1
+			#Checks to see if the player has died
+			if death == True:
+				end_message = result
+				robot = 5
+			else:
 
-	print(end_message)
+				#If not moves to the next robot
+				print(result)
+				robot +=1
 
+		print(end_message)
+
+		replay = util.play_again(replay)
 
 if __name__ == '__main__':
 	main()
