@@ -147,3 +147,12 @@ For this game to work, you need to install PyGame, which can be done as follows:
 
 *pip3 install PyGame*
 
+##Updates
+**5 October 2022**
+Added a file that allows the player to select the game, and also returns the player to that game. Added instructions
+to *Robot Invaders*.
+
+**6 October 2022**
+Added a play again function to utilities. Fixed up *Robot Invaders*. Fixed up *Secret Weapon* and added instructions.
+
+

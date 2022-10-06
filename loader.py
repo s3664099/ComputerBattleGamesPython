@@ -3,6 +3,7 @@
 import util
 import time
 import Robot_Invaders
+import Secret_Weapon
 
 #Function that displays the games available, and allows the user to select them
 def select_game():
@@ -18,7 +19,7 @@ def select_game():
 		print("4) Deset Tank Battle *")
 		print("5) Battle at Traitor's Castle *")
 		print("6) Robot Invaders")
-		print("7) Secret Weapon *")
+		print("7) Secret Weapon")
 		print("8) Escape! *")
 		print("9) Pirate Dogfight *")
 		print("10) Supersonic Bomber *")
@@ -32,12 +33,14 @@ def select_game():
 		response = input()
 
 		#Executes the players selection
-		if response == 'X':
+		if response.upper() == 'X':
 
 			#Ends the program by letting it run out
 			selecting = False
 		elif response  == '6':
 			Robot_Invaders.main()
+		elif response == '7':
+			Secret_Weapon.main()
 		else:
 			print("You have entered an incorrect option")
 			time.sleep(10)

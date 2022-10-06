@@ -93,22 +93,58 @@ def main_loop(difficulty, x_coord, y_coord):
 	#Player has lost the game
 	return "The Robots have seen you - AGGGHHHH ....", score
 
+def instructions():
+
+	util.clear_screen()
+	print("Secret Weapon")
+	print("====== ======")
+	print("Ifyou could destroy the main Robot Spare Parts Store, which lies underground somewhere in the eastern")
+	print("wastes ofthe U.R.S., you could cripple the robot attack quite severely. You have a new secret weapon,") 
+	print("as yet unknown to the robots, which can cut silently through soUd rock, vapourizing everything in its path.")
+	print("The Store is very cleverly concealed though. All you can do is aim your weapon bUndly and hope you get") 
+	print("somewhere near the target. Your computer will ask you for a difficulty number (the smallest number allowed")
+	print("is 4) and then ask for your guesses for the X and Y coordinates ofthe target. (Enter these separately,")
+	print("pressing RETURN, NEWLINE or ENTER after each one.) For a clue to the possible values of X and Y,look")
+	print("carefully at the program listing.")
+	print()
+	input("Press Enter to play")
+
 #Main game function
 def main():
+
+	replay = True
 
 	util.clear_screen()
 	print("Secret Weapon")
 
-	#gets the difficulty and determines the target's position
-	difficulty = get_difficulty()
-	x_coord = randint(0,difficulty+1)
-	y_coord = randint(0,difficulty+1)
+	#Asks player if they would like instructions
+	answer = False
 
-	#Calls the main game loop, and gets the results
-	result, score = main_loop(difficulty,x_coord,y_coord)
+	print("Would you like instructions (Y/N) ?")
+		
+	#Calls the yes or no function
+	answer = util.yes_or_no(answer)
 
-	print(result)
-	print("Your score is: {}".format(score))
+	#If yes calls the instructions function
+	if answer == True:
+		instructions()
+
+	while replay:
+
+		util.clear_screen()
+
+		#gets the difficulty and determines the target's position
+		difficulty = get_difficulty()
+		x_coord = randint(0,difficulty+1)
+		y_coord = randint(0,difficulty+1)
+
+		#Calls the main game loop, and gets the results
+		result, score = main_loop(difficulty,x_coord,y_coord)
+
+		print(result)
+		print("Your score is: {}".format(score))
+
+		replay = util.play_again(replay)
 
 if __name__ == '__main__':
 	main()

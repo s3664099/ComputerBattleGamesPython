@@ -59,15 +59,10 @@ def input_with_timeout_no_comment(prompt, timeout):
 		pass
 	return keypress
 
-#Function to handle query whether player wishes to replay the game
-def play_again(replay):
+#Handles asking the player a yes or no question
+def yes_or_no(answer):
 
-	#Sets the flag for a correct answer
 	correct = False
-
-	clear_screen()
-	print()
-	print("Do you wish to play again (Y/N) ?")
 
 	#Loop while waiting for the correct answer
 	while not correct:
@@ -77,11 +72,12 @@ def play_again(replay):
 
 		#Sets the flag as correct, and the player will replay
 		if reply.upper() == "Y":
+			answer = True
 			correct = True
 
 		#Sets the flag as correct and the player won't replay
 		elif reply.upper() == "N":
-			replay = False
+			answer = False
 			correct = True
 
 		#Response for incorrect answer
@@ -89,5 +85,15 @@ def play_again(replay):
 			print()
 			print("Please enter Y or N")
 			print()
+	return answer
+
+#Function to handle query whether player wishes to replay the game
+def play_again(replay):
+
+	print()
+	print("Do you wish to play again (Y/N) ?")
+
+	replay = yes_or_no(replay)
+	clear_screen()
 
 	return replay

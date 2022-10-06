@@ -73,9 +73,9 @@ def instructions():
 	print("have plenty ofweapons, but for each type of Robot you must select exactly")
 	print("the right one for it to have any effect. Code symbols for each Robot will flash up on your")
 	print("screen. Quickly press the key with that symbol on it - beware, some need the")
-	print("shift key too - and see how many Robot invaders you candestroy.")
+	print("shift key too - and see how many Robot invaders you can destroy.")
 	print()
-	input()
+	input("Press enter to play")
 	util.clear_screen()
 
 #Sets up the screen
