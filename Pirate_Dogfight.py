@@ -88,7 +88,9 @@ def get_move(velocity, distance):
 	print(display_planes(distance))
 
 	#Gets the input from the player
-	key = util.input_with_timeout_no_comment(">",1)
+	key = util.input_with_timeout_no_comment(">",2)
+
+	print("Key Pressed "+key)
 
 	#Executes the players command
 	if key == 'a':
@@ -142,34 +144,59 @@ def fire(velocity,distance):
 		else:
 			return 3
 
+def instructions():
+
+	util.clear_screen()
+	print("Pirate Dog-Fight")
+	print("================")
+	print("It's you against the Sky Pirate. He moves ahead, you accelerate - He")
+	print("drops behind, you slow down. You must try to get level with him and then")
+	print("you can fire, hoping that he won't be able to fire and hit you first.")
+	print("Use the letter keys A to accelerate, D to decelerate and F to fire. Your")
+	print("computer will tell you your speed and position relative to the pirate. You")
+	print("will need to be ready to press the appropriate keys as soon as you press")
+	print("RUN. Keep pressing A and D until you get level and then fire")
+	print()
+	input("Press enter to continue")
+
 def main_game():
 
 	#Sets up the game and determines initial
 	#velocity and position
-	end_note = ""
-	continuing = True
 	util.clear_screen()
 	print("Pirate Dog-Fight")
-	velocity = randint(-5,5)
-	distance = randint(1,4)*-1
 
-	#Game loop
-	while continuing:
+	if (util.ask_instructions() == True):
+		instructions()
 
-		result,distance, velocity = get_move(velocity, distance)
+	replay = True
 
-		#Determines the result of the game
-		if result == 1:
-			end_note = "He got away"
-			continuing = False
-		elif result == 2:
-			end_note = "You shot him down"
-			continuing = False
-		elif result == 3:
-			end_note = "He shot you first"
-			continuing = False
+	while replay:
 
-	print(end_note)
+		end_note = ""
+		continuing = True
+		velocity = randint(-5,5)
+		distance = randint(1,4)*-1
+
+		#Game loop
+		while continuing:
+
+			result,distance, velocity = get_move(velocity, distance)
+
+			#Determines the result of the game
+			if result == 1:
+				end_note = "He got away"
+				continuing = False
+			elif result == 2:
+				end_note = "You shot him down"
+				continuing = False
+			elif result == 3:
+				end_note = "He shot you first"
+				continuing = False
+
+		print(end_note)
+
+		replay = util.play_again(replay)
 
 if __name__ == '__main__':
 	main_game()

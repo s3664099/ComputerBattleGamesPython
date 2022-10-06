@@ -111,21 +111,6 @@ def game_loop(frequency):
 	#Time has run out and sends flag saying player has died
 	return("You took too long. The robots have tortured you to death, the frequency was {}".format(frequency)), True
 
-#Asks if the player wants instructions
-def ask_instructions():
-
-	#Asks player if they would like instructions
-	answer = False
-
-	print("Would you like instructions (Y/N) ?")
-		
-	#Calls the yes or no function
-	answer = util.yes_or_no(answer)
-
-	#If yes calls the instructions function
-	if answer == True:
-		instructions()
-
 #Displays the instructions
 def instructions():
 
@@ -150,7 +135,9 @@ def main():
 	util.clear_screen()
 	print("Escape!")
 	print("There are three robots to take out. Guess their frequencies")
-	ask_instructions()
+
+	if (util.ask_instructions() == True):
+		instructions()
 
 	replay = True
 
@@ -165,7 +152,6 @@ def main():
 			#Sets the frequency and calls the main game loop
 			print("Robot number {}".format(robot+1))
 			frequency = randint(1,frequency_range)
-			print(frequency)
 			result, death = game_loop(frequency)
 
 			#Checks to see if the player has died

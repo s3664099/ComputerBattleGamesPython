@@ -97,3 +97,16 @@ def play_again(replay):
 	clear_screen()
 
 	return replay
+
+#Asks if the player wants instructions
+def ask_instructions():
+
+	#Asks player if they would like instructions
+	answer = False
+
+	print("Would you like instructions (Y/N) ?")
+		
+	#Calls the yes or no function
+	answer = yes_or_no(answer)
+
+	return answer

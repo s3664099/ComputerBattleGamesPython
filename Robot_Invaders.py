@@ -122,7 +122,7 @@ def main():
 	while replay:
 
 		#The game loops 25 times.
-		for x in range(2):
+		for x in range(25):
 
 			#The game will sleep before showing the letter
 			sleep(randint(2,5))
