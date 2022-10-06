@@ -75,7 +75,6 @@ def instructions():
 	print("screen. Quickly press the key with that symbol on it - beware, some need the")
 	print("shift key too - and see how many Robot invaders you candestroy.")
 	print()
-	print("Press 'F1' to escape from the game")
 	input()
 	util.clear_screen()
 
@@ -109,6 +108,9 @@ def set_points(letter):
 #The main program loop
 def main():
 
+	#Sets boolean to determine whether player wishes to play again
+	replay = True
+
 	#Clears the screen and asks for difficulty
 	util.clear_screen()
 	print("Robot Invaders")
@@ -116,27 +118,31 @@ def main():
 	score = 0
 	print("Score: "+str(score))
 
-	#The game loops 25 times.
-	for x in range(25):
+	while replay:
 
-		#The game will sleep before showing the letter
-		sleep(randint(2,5))
-		util.clear_screen()
-		letter = set_screen()
-		points = set_points(letter)
+		#The game loops 25 times.
+		for x in range(2):
+
+			#The game will sleep before showing the letter
+			sleep(randint(2,5))
+			util.clear_screen()
+			letter = set_screen()
+			points = set_points(letter)
 	
-		#Gets the player's input
-		correct = util.input_with_timeout("",speed)
+			#Gets the player's input
+			correct = util.input_with_timeout("",speed)
 
-		#Checks to see if the player's input is correct
-		if (correct == letter):
-			print("Correct")
-			score += points
-		else:
-			print("incorrect")
-		print("Score: "+str(score))
+			#Checks to see if the player's input is correct
+			if (correct == letter):
+				print("Correct")
+				score += points
+			else:
+				print("incorrect")
+			print("Score: "+str(score))
 
-		sleep(randint(2,5))
+			sleep(randint(2,5))
+
+		replay = util.play_again(replay)
 
 if __name__ == '__main__':
 	main()
