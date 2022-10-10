@@ -154,5 +154,8 @@ to *Robot Invaders*.
 
 **6 October 2022**
 Added a play again function to utilities. Fixed up *Robot Invaders*. Fixed up *Secret Weapon* and added instructions.
+Fixed up *Escape* and *Pirate Dogfight*. Added a couple more functions to util which are being reused across the games
 
+##To Do
+1) Rewrite Pirate Dogfight using graphics.
 

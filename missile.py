@@ -29,56 +29,46 @@ random). It you hit the plane you win, but if you miss, you lose.
 import pygame
 import random
 import time
+import graphics
 
-#Initialises the PyGame library and creates the window with the caption being the title of the game
-pygame.init()
-display_width = 800
-display_height = 600	
-gameDisplay = pygame.display.set_mode((display_width,display_height))
-pygame.display.set_caption('Missile!!')
-
+start_position = random.uniform(0,0.6) 
 black = (0,0,0)
 white = (255,255,255)
-start_position = random.uniform(0,0.6) 
-clock = pygame.time.Clock()
 
 #Sets the icons that represent the plane, and the missiles
-jetImg = pygame.image.load('jet.png')
-missileImg = pygame.image.load('missile.png')
-missileImg = pygame.transform.scale(missileImg, (40,40))
-
-#Function that displays the jet
-def jet(x,y):
-	gameDisplay.blit(jetImg, (x,y))
-
-#Function that displays the missiles
-def missile(x,y):
-	gameDisplay.blit(missileImg, (x,y))	
+jetImg = graphics.create_icon('jet.png')
+missileImg = graphics.create_icon('missile.png')
+missileImg = graphics.transform_icon(missileImg)
 
 #These two functions creates and displays a text object
 def text_objects(text, font):
 	textSurface = font.render(text, True, white)
 	return textSurface, textSurface.get_rect()
 
-def message_display(text):
+def message_display(text ,display):
+	display_width = 800
+	display_height = 600	
 	largeText = pygame.font.Font('freesansbold.ttf',115)
 	TextSurf, TextRect = text_objects(text, largeText)
 	TextRect.center = ((display_width/2),(display_height/2))
 
 	#This updates the screen, and sleeps for two seconds
-	gameDisplay.blit(TextSurf, TextRect)
+	graphics.get_display(display).blit(TextSurf, TextRect)
 	pygame.display.update()
 	time.sleep(2)
 
 def main_game():
 
+	graphics.set_caption("Missile!")
+	display = graphics.display_screen()
+
 	#Variables that set the starting position of the jet
-	jet_x = (display_width * 0)
-	jet_y = (display_height * start_position)
+	jet_x = (graphics.get_width() * 0)
+	jet_y = (graphics.get_height() * start_position)
 
 	#Variables that display the starting position of the missiles
-	missile_y = [display_height * 0.9,display_height * 0.9,display_height * 0.9]
-	missile_x = [display_width * 0.3,display_width * 0.6,display_width * 0.9]
+	missile_y = [graphics.get_height() * 0.9,graphics.get_height() * 0.9,graphics.get_height() * 0.9]
+	missile_x = [graphics.get_width() * 0.3,graphics.get_width() * 0.6,graphics.get_width() * 0.9]
 	missile_launch = [False, False, False]
 
 	#Stores the missile that is to be fired
@@ -104,8 +94,8 @@ def main_game():
 				miss_no += 1
 
 		#Sets the background colour and displays the jet.
-		gameDisplay.fill(black)
-		jet(jet_x,jet_y)
+		display.fill(black)
+		graphics.display_icon(jetImg,jet_x,jet_y,display)
 
 		#Moves the jet across the screen
 		jet_x += 1
@@ -117,23 +107,23 @@ def main_game():
 			#And moves it if it has
 			if missile_launch[x] == True:
 				missile_y[x] -= 2
-			missile(missile_x[x],missile_y[x])
+			graphics.display_icon(missileImg,missile_x[x],missile_y[x],display)
 
 			#Detects whether the missile has hit the plane, and ends the game
 			#If it has		
 			if missile_x[x] > jet_x-20 and missile_x[x] < jet_x +20:
 				if missile_y[x] > jet_y -20 and missile_y[x] < jet_y +20:
-					message_display("You hit him!")
+					message_display("You hit him!",display)
 					crashed = True	
 
 		#Checks to see if the jet has left the screen and ends the game
 		#if it has
-		if jet_x > display_width:
-			message_display("You Missed!")
+		if jet_x > graphics.get_width():
+			message_display("You Missed!", display)
 			crashed = True 
 
 		pygame.display.update()
-		clock.tick(60)
+		graphics.get_clock().tick(60)
 
 
 if __name__ == '__main__':

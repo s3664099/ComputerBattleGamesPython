@@ -8,8 +8,8 @@ from random import randint
 Title: Secret Weapon
 Author: Daniel Isaaman & Jenny Tyler
 Translater: David Sarkies 
-Version: 1
-Date: 27/1/2021
+Version: 1.1
+Date: 6 October 2022
 Source: https://drive.google.com/file/d/0Bxv0SsvibDMTVUExUjFhTURCSU0/view
 
 This is a straight forward guessing game, which appears on page 17 of Computer Battlegames

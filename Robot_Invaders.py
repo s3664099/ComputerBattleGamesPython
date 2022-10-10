@@ -10,8 +10,8 @@ from time import sleep
 Title: Robot Invaders
 Author: Daniel Isaaman & Jenny Tyler
 Translater: David Sarkies 
-Version: 1
-Date: 26/1/2021
+Version: 1.1
+Date: 5 October 2022
 Source: https://drive.google.com/file/d/0Bxv0SsvibDMTVUExUjFhTURCSU0/view
 
 This game, Robot Invaders, appears page 14 of Computer Battlegames
