@@ -60,43 +60,70 @@ def set_up(cities, no_cities):
 	#Returns the cities and the highest population
 	return cities, highest_pop+1
 
+#Instructions function
+def instructions():
+
+	util.clear_screen()
+	print("You are on a lone supersonic bombing mission over the U.R.S. Your computer")
+	print("shows graphs of Robot population based on infrared photographs relayed to it by")
+	print("satellite. You only have time to attack one target in five, so you must quickly")
+	print("select the one with the highest population of Robots and release one of")
+	print("your 'Corrodarobe' bombs on it. (These contain a substance so corrosive it can")
+	print("dissolve a Robot's body in seconds.) To release a bomb, press the number")
+	print("key which corresponds to the number next to the graph of highest Robot")
+	print("population. If there are two the same, choose the one with the lowest number.")
+	print("Will you be a hero when you return to base?")
+	print("")
+	input("Press Enter to Continue")
+
 #Main game function
 def main_game():
 
 	#Sets the initial variables and gets difficulty
 	util.clear_screen()
 	print("Supersonic Bomber\n\n")
-	difficulty = set_difficulty()
-	score = 0
-	cities = []
-	no_cities = 5
-	time_diff = 2
 
-	#Determines the difficulty settings
-	if difficulty == "2":
-		no_cities = 10
-		time_diff = 1
-	elif difficulty == "3":
-		no_cities = 15
-		time_diff = 0.5
+	if (util.ask_instructions() == True):
+		instructions()
 
-	#Executes ten rounds for the game
-	for x in range (10,0,-1):
-		cities.clear()
-		cities,highest_pop = set_up(cities, no_cities)			
-		score = get_input(highest_pop,score,x*time_diff)
+	replay = True
 
-	#Tells the player their results
-	print("You hit {} out of 10".format(score))
-	print("high density targets")
-	if score == 10:
-		print("You are a champion!")
-	elif score >4:
-		print("Good, but not good enough")
-	elif score >0:
-		print("You could definitely do better")
-	else:
-		print("Hey, you suck big time")
+	while replay:
+		util.clear_screen()
+
+		difficulty = set_difficulty()
+		score = 0
+		cities = []
+		no_cities = 5
+		time_diff = 2
+
+		#Determines the difficulty settings
+		if difficulty == "2":
+			no_cities = 10
+			time_diff = 1
+		elif difficulty == "3":
+			no_cities = 15
+			time_diff = 0.5
+
+		#Executes ten rounds for the game
+		for x in range (10,0,-1):
+			cities.clear()
+			cities,highest_pop = set_up(cities, no_cities)			
+			score = get_input(highest_pop,score,x*time_diff)
+
+		#Tells the player their results
+		print("You hit {} out of 10".format(score))
+		print("high density targets")
+		if score == 10:
+			print("You are a champion!")
+		elif score >4:
+			print("Good, but not good enough")
+		elif score >0:
+			print("You could definitely do better")
+		else:
+			print("Hey, you suck big time")
+
+		replay = util.play_again(replay)
 		
 #Gets the player's input for the round
 def get_input(highest_pop,score,level):
