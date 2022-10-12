@@ -40,23 +40,6 @@ jetImg = graphics.create_icon('jet.png')
 missileImg = graphics.create_icon('missile.png')
 missileImg = graphics.transform_icon(missileImg)
 
-#These two functions creates and displays a text object
-def text_objects(text, font):
-	textSurface = font.render(text, True, white)
-	return textSurface, textSurface.get_rect()
-
-def message_display(text ,display):
-	display_width = 800
-	display_height = 600	
-	largeText = pygame.font.Font('freesansbold.ttf',115)
-	TextSurf, TextRect = text_objects(text, largeText)
-	TextRect.center = ((display_width/2),(display_height/2))
-
-	#This updates the screen, and sleeps for two seconds
-	graphics.get_display(display).blit(TextSurf, TextRect)
-	pygame.display.update()
-	time.sleep(2)
-
 def main_game():
 
 	graphics.set_caption("Missile!")
@@ -113,13 +96,13 @@ def main_game():
 			#If it has		
 			if missile_x[x] > jet_x-20 and missile_x[x] < jet_x +20:
 				if missile_y[x] > jet_y -20 and missile_y[x] < jet_y +20:
-					message_display("You hit him!",display)
+					graphics.message_display("You hit him!",display)
 					crashed = True	
 
 		#Checks to see if the jet has left the screen and ends the game
 		#if it has
 		if jet_x > graphics.get_width():
-			message_display("You Missed!", display)
+			graphics.message_display("You Missed!", display)
 			crashed = True 
 
 		pygame.display.update()

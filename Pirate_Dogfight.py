@@ -41,7 +41,6 @@ Enemy Jet:
 """
 
 import util
-import time
 from random import randint
 import pygame
 import graphics
@@ -50,6 +49,7 @@ import graphics
 display_width = graphics.display_width
 display_height = graphics.display_height
 black = (0,0,0)
+delay = 500
 
 #Sets the jets
 playerJetImg = graphics.create_icon('playerJet.png')
@@ -100,6 +100,8 @@ def get_move(velocity, distance,display):
 	#Checks to see if you are too far away from the oppoent
 	if abs(distance)>20:
 		return 1,distance,velocity
+
+
 
 	"""
 	#Gets the input from the player
@@ -196,8 +198,6 @@ def main_game():
 		velocity = randint(-5,5)
 		distance = randint(1,4)*40
 
-		print(distance)
-
 		player_x,player_y = set_position(40,distance)
 		enemy_x,enemy_y = set_position(0,0)
 
@@ -207,24 +207,49 @@ def main_game():
 			#Clears the screen
 			graphics.get_display(display).fill(black)
 
+			#Displays the jets
 			graphics.display_icon(playerJetImg,player_x,player_y,display)
 			graphics.display_icon(enemyJetImg,enemy_x,enemy_y,display)
 
-			result,distance, velocity = get_move(velocity, distance,display)
+			#Registers the player input
+			for event in pygame.event.get():
+
+				if event.type == pygame.QUIT:
+					continuing = False
+
+				#Keys for speeding the jet up, or slowing it down
+				if event.type == pygame.KEYDOWN:
+
+					if event.key == pygame.K_a:
+						velocity +=1
+					elif event.key == pygame.K_d:
+						velocity -=1
+
+			enemy_x -= 10
+			player_x -= velocity*10
+			pygame.time.wait(delay)
+			distance = enemy_x-player_x
+
+			if abs(distance)>500:
+				graphics.message_display("He got away",display)
+
+			#result,distance, velocity = get_move(velocity, distance,display)
 
 			#Determines the result of the game
-			if result == 1:
-				end_note = "He got away"
-				continuing = False
-			elif result == 2:
-				end_note = "You shot him down"
-				continuing = False
-			elif result == 3:
-				end_note = "He shot you first"
-				continuing = False
-
+			#if result == 1:
+			#	end_note = "He got away"
+			#	continuing = False
+			#elif result == 2:
+			#	end_note = "You shot him down"
+			#	continuing = False
+			#elif result == 3:
+			#	end_note = "He shot you first"
+			#	continuing = False
+			
 			pygame.display.update()
 			graphics.get_clock().tick(60)
+
+		pygame.quit()
 
 		print(end_note)
 

@@ -18,6 +18,7 @@ pygame.init()
 display_width = 800
 display_height = 600
 clock = pygame.time.Clock()	
+white = (255,255,255)
 
 def display_screen():
 	gameDisplay = pygame.display.set_mode((display_width,display_height))
@@ -38,6 +39,30 @@ def transform_icon(icon):
 #Displays the icon on the frame
 def display_icon(icon,x,y,gameDisplay):
 	gameDisplay.blit(icon, (x,y))
+
+#Displays a message on the screen
+def message_display(text ,display):
+	display_width = 800
+	display_height = 600
+
+	#Sets the text font	
+	largeText = pygame.font.Font('freesansbold.ttf',115)
+
+	#Creates the text objects
+	TextSurf, TextRect = text_objects(text, largeText)
+
+	#centers the text
+	TextRect.center = ((display_width/2),(display_height/2))
+
+	#This updates the screen, and sleeps for two seconds
+	get_display(display).blit(TextSurf, TextRect)
+	pygame.display.update()
+	pygame.time.wait(2000)
+
+#These creates and displays a text object
+def text_objects(text, font):
+	textSurface = font.render(text, True, white)
+	return textSurface, textSurface.get_rect()
 
 def get_width():
 	return display_width
