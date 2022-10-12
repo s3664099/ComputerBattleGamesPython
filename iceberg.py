@@ -121,6 +121,23 @@ def move_enemy():
 	elif player_y-enemy_y >0:
 		enemy_y +=1 
 
+def instructions():
+
+	print("Your huU is badIy damaged and you've no weapons to speak of. As")
+	print("you limp slowly home through treacherous iceberg-strewn waters,")
+	print("you become aware that an enemy ship is tailing you. Strangely it can")
+	print("detect you but not the icebergs, so your best chance is to lure it into")
+	print("hitting one.")
+	print("Your computer will print a grid showing the position of your ship")
+	print("(Y), the enemy (Z) and the icebergs (*). You can move one space North,")
+	print("South, East or West each go. The enemy moves towards you by the")
+	print("most direct route (it can move diagonally too). If you move into any")
+	print("of the 8 positions surrounding the enemy, you wUl be captured, and if")
+	print("you hit an iceberg you will sink.")
+	print("Can you escape?")
+	print("")
+	input("Press Enter to Continue")
+
 #The main game loop
 def main_game(game_map):
 
@@ -240,18 +257,28 @@ def setup_game():
 	util.clear_screen()
 	print('Iceberg')
 
-	#Builds the game map and populates it.
-	game_map = [[0 for x in range(map_size)] for y in range(map_size)] 
-	game_map = build_map(game_map)
+	if (util.ask_instructions() == True):
+		instructions()
 
-	#Starts the main game loop
-	result = main_game(game_map)
+	replay = True
+
+	while replay:
+
+		#Builds the game map and populates it.
+		game_map = [[0 for x in range(map_size)] for y in range(map_size)] 
+		game_map = build_map(game_map)
+
+		#Starts the main game loop
+		result = main_game(game_map)
 	
-	#Displays the result of the game
-	if not result:
-		print("You Lose!")
-	else:
-		print("You win!")
+		#Displays the result of the game
+		if not result:
+			print("You Lose!")
+		else:
+			print("You win!")
+
+		replay = util.play_again(replay)
+
 
 if __name__ == '__main__':
 	setup_game()
