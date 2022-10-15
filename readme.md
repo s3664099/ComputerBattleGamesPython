@@ -70,6 +70,11 @@ This game generates a random number that equates to a letter of the alphabet. Th
 the letter, and if the guess is incorrect, the game will check where the guess is in relation to the letter
 and provide a hint.
 
+**Vital Message**
+This is a game that tests your memory. A phrase consisting of random letters is displayed for a period of time
+and then removed. The player is then required to remember and type the phrase down. If it is correct, the player wins
+otherwise the player loses.
+
 **Robot Invaders**
 
 This game will flash a character up on the screen, and the player is supposed to reproduce that character
