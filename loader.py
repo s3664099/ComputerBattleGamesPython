@@ -9,6 +9,7 @@ import Pirate_Dogfight
 import Supersonic_Bomber
 import iceberg
 import Wizards_Wall
+import missile
 
 #Function that displays the games available, and allows the user to select them
 def select_game():
@@ -30,7 +31,7 @@ def select_game():
 		print("10) Supersonic Bomber")
 		print("11) Iceberg")
 		print("12) Wizard's Wall")
-		print("13) Missile! *")
+		print("13) Missile!")
 		print("X) Exit")
 		print()
 		print("Games marked with an asterix '*' haven't been incorporated yet")
@@ -42,6 +43,8 @@ def select_game():
 
 			#Ends the program by letting it run out
 			selecting = False
+
+		#Loads the games based on the selection
 		elif response  == '6':
 			Robot_Invaders.main()
 		elif response == '7':
@@ -56,6 +59,8 @@ def select_game():
 			iceberg.setup_game()
 		elif response == '12':
 			Wizards_Wall.start_game()
+		elif response == '13':
+			missile.start_game()
 		else:
 			print("You have entered an incorrect option")
 			time.sleep(5)

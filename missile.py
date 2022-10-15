@@ -28,7 +28,7 @@ random). It you hit the plane you win, but if you miss, you lose.
 
 import pygame
 import random
-import time
+import util
 import graphics
 
 start_position = random.uniform(0,0.6) 
@@ -108,9 +108,42 @@ def main_game():
 		pygame.display.update()
 		graphics.get_clock().tick(60)
 
+	#Delays closing the screen
+	pygame.time.wait(1000)
+
+def instructions():
+
+	print("Missile!")
+	print("========")
+	print("You have three missile bases, each capable of launching one missile.")
+	print("When you see a plane approaching, you must judge its height and speed")
+	print("and fire your missiles at it one by one. Your missiles are launched by")
+	print("pressing any key. The first time you press launches the left-hand one,")
+	print("second time the middle one and third time the right-hand one.")
+	print("See how many enemy planes you can shoot down.")
+	print()
+	input("Press enter to continue")
+
+#Starts the game by asking instructions and creates a game loop
+def start_game():
+
+	util.clear_screen()
+	print("Missle!")
+
+	if (util.ask_instructions() == True):
+		instructions()
+
+	replay = True
+
+	while replay:
+
+		main_game()
+
+		#Kills the screen to ask the play again question
+		pygame.quit()
+
+		replay = util.play_again(replay)
 
 if __name__ == '__main__':
-	main_game()
+	start_game()
 
-pygame.quit()
-quit()
