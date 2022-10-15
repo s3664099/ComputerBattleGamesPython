@@ -104,9 +104,6 @@ def get_move(velocity, distance,display):
 
 
 	"""
-	#Gets the input from the player
-	key = util.input_with_timeout_no_comment(">",2)
-
 	#Executes the players command
 	if key == 'a':
 		velocity += 1

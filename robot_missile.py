@@ -4,11 +4,18 @@
 Title: Robot Missile
 Author: Daniel Isaaman & Jenny Tyler
 Translator: David Sarkies
-Version: 0
+Version: 1
 Date: 15 October 2022
 Source: Source: https://drive.google.com/file/d/0Bxv0SsvibDMTVUExUjFhTURCSU0/view
 
 This game can be found on page 4 of Computer Battle Games, and it a python3 translation.
+
+This game involves the player guessing a letter of the alphabet. If the guess is incorrect
+the game will compare the position of the guess with the position of the letter in the alphabet
+and provide a hint in the form of it being earlier or later.
+
+Okay, I have used breaks in this code, which I know I'm not supposed to (according to Djisktra),
+but since I lost my original conversion when my laptop died, I'm going to do it anyway.
 """
 
 import util

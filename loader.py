@@ -10,6 +10,8 @@ import Supersonic_Bomber
 import iceberg
 import Wizards_Wall
 import missile
+import robot_missile
+import vital_message
 
 #Function that displays the games available, and allows the user to select them
 def select_game():
@@ -19,8 +21,8 @@ def select_game():
 	#Creates a while loops to hold the menu to select the game
 	while (selecting):
 		util.clear_screen()
-		print("1) Robot Missile *")
-		print("2) The Vital Message *")
+		print("1) Robot Missile")
+		print("2) The Vital Message")
 		print("3) Shootout *")
 		print("4) Deset Tank Battle *")
 		print("5) Battle at Traitor's Castle *")
@@ -45,6 +47,10 @@ def select_game():
 			selecting = False
 
 		#Loads the games based on the selection
+		elif response == '1':
+			robot_missile.start_game()
+		elif response == '2':
+			vital_message.start_game()
 		elif response  == '6':
 			Robot_Invaders.main()
 		elif response == '7':

@@ -65,6 +65,11 @@ harddrive seemed to have been wiped so it looks like they have been lost.
 
 ## Games
 
+**Robot Missile**
+This game generates a random number that equates to a letter of the alphabet. The player then must guess
+the letter, and if the guess is incorrect, the game will check where the guess is in relation to the letter
+and provide a hint.
+
 **Robot Invaders**
 
 This game will flash a character up on the screen, and the player is supposed to reproduce that character
@@ -155,6 +160,9 @@ to *Robot Invaders*.
 **6 October 2022**
 Added a play again function to utilities. Fixed up *Robot Invaders*. Fixed up *Secret Weapon* and added instructions.
 Fixed up *Escape* and *Pirate Dogfight*. Added a couple more functions to util which are being reused across the games
+
+**15 October 2022**
+Added the rest of the games that were rescued from the crash, and converted *Robot Missile*.
 
 ##To Do
 1) Rewrite Pirate Dogfight using graphics.
