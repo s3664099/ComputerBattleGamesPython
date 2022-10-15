@@ -73,7 +73,7 @@ def display_instructions():
 
 #Function to call the player to press enter to continue
 def press_enter():
-	x = input("<<press Return to continue>>")
+	input("<<press Return to continue>>")
 
 #Function to request the player to enter the difficulty level
 #Also validates the input to make sure it is an integer between 
@@ -112,19 +112,24 @@ def start_game():
 		else:
 			print("Please enter (Y)es or (N)o")
 
-	#Sets up the wall and executes the main game
-	difficulty = get_difficulty()
-	wall, wall_detail = set_up() 
-	result = main_game(difficulty,wall, wall_detail)
+	replay = True
 
-	#Displays the result of the game
-	if result == True:
-		print("You have managed to break a hole in the wizard's wall")
-		print("You have beaten his magic powers, and freed his victims")
-	else:
-		print("You have been turned into stone")
-		print("You are now a part of the wizard's wall")
-		print("Too bad, so sad.")
+	while replay:
+		#Sets up the wall and executes the main game
+		difficulty = get_difficulty()
+		wall, wall_detail = set_up() 
+		result = main_game(difficulty,wall, wall_detail)
+
+		#Displays the result of the game
+		if result == True:
+			print("You have managed to break a hole in the wizard's wall")
+			print("You have beaten his magic powers, and freed his victims")
+		else:
+			print("You have been turned into stone")
+			print("You are now a part of the wizard's wall")
+			print("Too bad, so sad.")
+
+		replay = util.play_again()
 
 #Function that prints out the wizard's wall to show the player
 #what has been knocked down, and what remains

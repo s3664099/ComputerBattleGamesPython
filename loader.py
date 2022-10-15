@@ -8,6 +8,7 @@ import escape
 import Pirate_Dogfight
 import Supersonic_Bomber
 import iceberg
+import Wizards_Wall
 
 #Function that displays the games available, and allows the user to select them
 def select_game():
@@ -28,7 +29,7 @@ def select_game():
 		print("9) Pirate Dogfight")
 		print("10) Supersonic Bomber")
 		print("11) Iceberg")
-		print("12) The Wall *")
+		print("12) Wizard's Wall")
 		print("13) Missile! *")
 		print("X) Exit")
 		print()
@@ -53,6 +54,8 @@ def select_game():
 			Supersonic_Bomber.main_game()
 		elif response == '11':
 			iceberg.setup_game()
+		elif response == '12':
+			Wizards_Wall.start_game()
 		else:
 			print("You have entered an incorrect option")
 			time.sleep(5)
