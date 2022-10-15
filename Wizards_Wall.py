@@ -4,8 +4,9 @@
 Title: Wizard's Wall
 Author: Daniel Isaaman & Jenny Tyler
 Translator: David Sarkies
-Version: 1
+Version: 1.1
 Date: 8 March 2021
+Updated Date: 15 October 2022
 Source: https://drive.google.com/file/d/0Bxv0SsvibDMTVUExUjFhTURCSU0/view
 
 This is another game from the Computer Battlegames book, this one appearing

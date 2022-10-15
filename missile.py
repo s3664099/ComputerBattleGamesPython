@@ -4,8 +4,9 @@
 Title: Missile!
 Author: Daniel Isaaman & Jenny Tyler
 Translator: David Sarkies
-Version: 1
+Version: 1.1
 Date: 21 March 2021
+Updated Date: 15 October 2022
 Source: https://drive.google.com/file/d/0Bxv0SsvibDMTVUExUjFhTURCSU0/view
 
 This is the final game in the Computer Battlegames Book, and can be found on page 30. The difference with
