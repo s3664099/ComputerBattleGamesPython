@@ -13,9 +13,12 @@ This game can be found on page 4 of Computer Battle Games, and it a python3 tran
 
 import util
 from random import randint
+import time
 
+#Holds the letters of the alphabet
 alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
+#Displays the full instructions for the game
 def instructions():
 
 	util.clear_screen()
@@ -29,20 +32,61 @@ def instructions():
 	print("chances to find the correct letter before the missile blows up.")
 	print()
 
+#Retrieves a random letter of the alphabet
 def get_letter():
 
 	letter = randint(0,25)
 	return alphabet[letter]
 
+#Checks the position of the player's response to the position of the
+#letter in the alphabet
+def check_position(response,letter):
+
+	for x in alphabet:
+
+		#If it hits the response before hitting the letter
+		if response == x:
+			print("Later")
+			break
+
+		#If it hits the letter before hitting the response
+		elif letter == x:
+			print("Earlier")
+			break
+
 def main_game(letter):
 
-	print(letter)
-	input("Press enter to continue")
+	#Sets the won flag
+	won = False
 
+	#The player gets four goes
+	for x in range(4):
+
+		#gets the response and sets it to upper case
+		response = input("Please select a letter: ").upper()
+
+		#The player guesses the latter		
+		if (response == letter):
+			print("Tick ... fzzz ... click ...")
+			time.sleep(2)
+			print("You did it!")
+
+			#The win flag is set
+			won = True
+			break
+
+		#The player's guess is incorrect
+		else:
+			check_position(response,letter)
+
+	#The win flag indicates a loss
+	if not won:
+		print("BOOOOMMMMMM........")
+		print("You blew it.")
+		print("The correct code was {}".format(letter))
 
 def start_game():
 
-	"""
 	util.clear_screen()
 	print("Robot Missile")
 
@@ -55,10 +99,13 @@ def start_game():
 		print("you have 4 changes")
 
 	input("Press enter to continue")
-	"""
 
-	while True:
+	replay = True
+
+	while replay:
+
 		main_game(get_letter())
+		replay = util.play_again(replay)
 
 if __name__ == '__main__':
 	start_game()
