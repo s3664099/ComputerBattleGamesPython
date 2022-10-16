@@ -41,18 +41,21 @@ def display_icon(icon,x,y,gameDisplay):
 	gameDisplay.blit(icon, (x,y))
 
 #Displays a message on the screen
-def message_display(text ,display):
+def message_display(text ,display,size,textPosition):
 	display_width = 800
 	display_height = 600
 
 	#Sets the text font	
-	largeText = pygame.font.Font('freesansbold.ttf',115)
+	largeText = pygame.font.Font('freesansbold.ttf',size)
 
 	#Creates the text objects
 	TextSurf, TextRect = text_objects(text, largeText)
 
-	#centers the text
-	TextRect.center = ((display_width/2),(display_height/2))
+	if textPosition == "centre":
+		#centers the text
+		TextRect.center = ((display_width/2),(display_height/2))
+	elif textPosition == "bottom":
+		TextRect.center = ((display_width/2),display_height-100)
 
 	#This updates the screen, and sleeps for two seconds
 	get_display(display).blit(TextSurf, TextRect)

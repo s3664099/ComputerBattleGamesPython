@@ -40,6 +40,7 @@ white = (255,255,255)
 jetImg = graphics.create_icon('jet.png')
 missileImg = graphics.create_icon('missile.png')
 missileImg = graphics.transform_icon(missileImg)
+text_size = 50
 
 def main_game():
 
@@ -97,13 +98,13 @@ def main_game():
 			#If it has		
 			if missile_x[x] > jet_x-20 and missile_x[x] < jet_x +20:
 				if missile_y[x] > jet_y -20 and missile_y[x] < jet_y +20:
-					graphics.message_display("You hit him!",display)
+					graphics.message_display("You hit him!",display,text_size,"centre")
 					crashed = True	
 
 		#Checks to see if the jet has left the screen and ends the game
 		#if it has
 		if jet_x > graphics.get_width():
-			graphics.message_display("You Missed!", display)
+			graphics.message_display("You Missed!", display,text_size,"centre")
 			crashed = True 
 
 		pygame.display.update()
