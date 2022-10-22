@@ -143,11 +143,11 @@ def fire(velocity,distance):
 		return 5
 
 	#Too far behind
-	elif distance<-2:
+	elif distance<-20:
 		return 4
 	
 	#Going too fast/slow
-	elif abs(velocity)>2:
+	elif abs(velocity)>20:
 		return 1
 
 	#Within striking distance, determines who hits who 
@@ -177,13 +177,10 @@ def main_game():
 
 	#Sets up the game and determines initial
 	#velocity and position
-	util.clear_screen()
-	print("Pirate Dog-Fight")
+	answer,replay = util.start_game("Pirate Dog-Fight")
 
-	if (util.ask_instructions() == True):
+	if (answer):
 		instructions()
-
-	replay = True
 
 	while replay:
 
@@ -208,6 +205,8 @@ def main_game():
 			graphics.display_icon(playerJetImg,player_x,player_y,display)
 			graphics.display_icon(enemyJetImg,enemy_x,enemy_y,display)
 
+			firing = False
+
 			#Registers the player input
 			for event in pygame.event.get():
 
@@ -221,21 +220,23 @@ def main_game():
 						velocity +=1
 					elif event.key == pygame.K_d:
 						velocity -=1
+					elif event.key == pygame.K_f:
+						firing = True
 
 			enemy_x -= 10
 			player_x -= velocity*10
 			pygame.time.wait(delay)
 			distance = enemy_x-player_x
 
-			if abs(distance)>500:
-				graphics.message_display("He got away",display)
+			if (abs(distance)>500) or (player_x <0) or (enemy_x<0):
+				graphics.message_display("He got away",display,50,"bottom")
+				continuing = False
+
+			if (firing):
+				graphics.message_display("Pew Pew",display,50,"bottom")
 
 			#result,distance, velocity = get_move(velocity, distance,display)
 
-			#Determines the result of the game
-			#if result == 1:
-			#	end_note = "He got away"
-			#	continuing = False
 			#elif result == 2:
 			#	end_note = "You shot him down"
 			#	continuing = False

@@ -19,7 +19,23 @@ https://pypi.org/project/inputimeout/
 
 Update 7/2/2021
 Added a second input function that doesn't display 'too late'
+
+Update 22/10/2022
+Added a few more since, including a start game function that pretty much does what
+all the games do at the beginning.
+Added another input with timeout function to return true or false
 """
+
+def start_game(title):
+
+	replay = True
+	answer = False
+	clear_screen()
+	print(title)
+	print("Do you want instructions (Y/N)")
+	answer = yes_or_no(answer)
+
+	return answer,replay
 
 def clear_screen():
 	_ = system('clear')
@@ -45,6 +61,15 @@ def input_with_timeout(prompt, timeout):
 	except TimeoutOccurred:
 		print("Too late!")
 	return keypress
+
+def input_with_timeout_02(prompt,timeout):
+
+	try:
+		inputimeout(prompt,timeout)
+
+	except:
+		return False
+	return True
 
 def input_with_timeout_no_comment(prompt, timeout):
 

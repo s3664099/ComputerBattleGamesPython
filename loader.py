@@ -12,6 +12,7 @@ import Wizards_Wall
 import missile
 import robot_missile
 import vital_message
+import shootout
 
 #Function that displays the games available, and allows the user to select them
 def select_game():
@@ -23,7 +24,7 @@ def select_game():
 		util.clear_screen()
 		print("1) Robot Missile")
 		print("2) The Vital Message")
-		print("3) Shootout *")
+		print("3) Shootout")
 		print("4) Deset Tank Battle *")
 		print("5) Battle at Traitor's Castle *")
 		print("6) Robot Invaders")
@@ -51,6 +52,8 @@ def select_game():
 			robot_missile.start_game()
 		elif response == '2':
 			vital_message.start_game()
+		elif response == '3':
+			shootout.start_game()
 		elif response  == '6':
 			Robot_Invaders.main()
 		elif response == '7':

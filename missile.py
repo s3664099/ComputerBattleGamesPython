@@ -129,13 +129,10 @@ def instructions():
 #Starts the game by asking instructions and creates a game loop
 def start_game():
 
-	util.clear_screen()
-	print("Missle!")
+	answer,replay = util.start_game("Missile!")
 
-	if (util.ask_instructions() == True):
+	if (answer):
 		instructions()
-
-	replay = True
 
 	while replay:
 

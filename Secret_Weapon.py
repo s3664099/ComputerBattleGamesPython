@@ -30,6 +30,9 @@ use windows.)
 The original game was written in basic.
 
 I have added error handling routines to make sure that the player enters integers
+
+Update 22/10/2022
+Moved the start game metrics to a function in util.py
 """
 
 #Function to select the difficulty of the game
@@ -114,18 +117,7 @@ def instructions():
 #Main game function
 def main():
 
-	replay = True
-
-	util.clear_screen()
-	print("Secret Weapon")
-
-	#Asks player if they would like instructions
-	answer = False
-
-	print("Would you like instructions (Y/N) ?")
-		
-	#Calls the yes or no function
-	answer = util.yes_or_no(answer)
+	answer,replay = util.start_game("Secret Weapon")
 
 	#If yes calls the instructions function
 	if answer == True:
