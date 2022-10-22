@@ -4,7 +4,7 @@
 Title: Pirate Dogfight
 Author: Daniel Isaaman & Jenny Tyler
 Translator: David Sarkies
-Version: 1.1
+Version: 2
 Date: 6 October 2022
 Source: Source: https://drive.google.com/file/d/0Bxv0SsvibDMTVUExUjFhTURCSU0/view
 
@@ -34,10 +34,15 @@ d - decellerate
 f - fire
 
 Player Jet:
-<a href="https://www.flaticon.com/free-icons/jet-plane" title="jet plane icons">Jet plane icons created by imaginationlol - Flaticon</a>
+https://www.flaticon.com/free-icons/jet-plane" Jet plane icons created by imaginationlol - Flaticon
 
 Enemy Jet:
-<a href="https://www.flaticon.com/free-icons/jet" title="jet icons">Jet icons created by Creaticca Creative Agency - Flaticon</a>
+https://www.flaticon.com/free-icons/jet" Jet icons created by Creaticca Creative Agency - Flaticon
+
+Bullets:
+https://www.flaticon.com/free-icons/bullet Bullet icons created by Nikita Golubev - Flaticon
+
+22 October 2022 - Added graphics to the game
 """
 
 import util
@@ -51,11 +56,13 @@ display_height = graphics.display_height
 black = (0,0,0)
 delay = 500
 
-#Sets the jets
+#Sets the icons
 playerJetImg = graphics.create_icon('playerJet.png')
 enemyJetImg = graphics.create_icon('enemyJet.png')
+bulletsImg = graphics.create_icon('bullets.png')
 playerJetImg = graphics.transform_icon(playerJetImg)
 enemyJetImg = graphics.transform_icon(enemyJetImg)
+bulletsImg = graphics.transform_icon(bulletsImg)
 
 #Displays the position of the planes. The opponent is always
 #in the centre of the screen
@@ -66,96 +73,27 @@ def set_position(height,distance):
 
 	return jet_x,jet_y
 	
-#Gets the distance of the plane from the edge of the screen
-def get_distance(length):
-	length = int(length)
-	display = ""
-
-	for x in range(length):
-		display +=" "
-
-	return display
-
-#Checks your position relative to the opponent
-def check_position(distance):
-	if distance<0:
-		return "Behind"
-	elif distance >0:
-		return "In Front"
-	else:
-		return "Level"
-
-#Checks your speed relative to the opponent
-def check_speed(velocity):
-	if velocity > 0:
-		return "Going faster"
-	elif velocity < 0:
-		return "Going slower"
-	else:
-		return "The same speed"	
-
-#Gets the players move
-def get_move(velocity, distance,display):
-
-	#Checks to see if you are too far away from the oppoent
-	if abs(distance)>20:
-		return 1,distance,velocity
-
-
-
-	"""
-	#Executes the players command
-	if key == 'a':
-		velocity += 1
-	elif key == 'd':
-		velocity -= 1
-	elif key == 'f':
-
-		#Executes the fire command and determines
-		#The result
-		print("Pew Pew Pew")
-		result = fire(velocity,distance)
-		if result == 1:
-			print("Your shots fly over his wing, you are going too fast")
-		elif result == 4:
-			print("You are too far away, your shots fall short")
-		elif result == 5:
-			print("He's behind you. You can't hit him")
-		elif result == 3:
-			time.sleep(1)
-			return result,distance,velocity
-		else:
-			time.sleep(1)
-			return result,distance,velocity
-
-	#Changes your position relative to the opponent
-	distance = distance + velocity
-	time.sleep(1)
-	"""
-
-	return 0,distance,velocity
-
 #The fire function. Determines the response based on the positon
 def fire(velocity,distance):
 
 	#In front
 	if distance>0:
-		return 5
+		return 5,"He's behind you. You can't hit him"
 
 	#Too far behind
-	elif distance<-20:
-		return 4
+	elif distance<-50:
+		return 4,"You are too far away, your shots fall short"
 	
 	#Going too fast/slow
 	elif abs(velocity)>20:
-		return 1
+		return 1, "Your shots fly over his wing, you are going too fast"
 
 	#Within striking distance, determines who hits who 
 	else:
 		if randint(1,10)>5:
-			return 2
+			return 2, "You shot him down"
 		else:
-			return 3
+			return 3, "He shot you first"
 
 def instructions():
 
@@ -187,7 +125,6 @@ def main_game():
 		graphics.set_caption("Pirate Dog-Fight")
 		display = graphics.display_screen()
 
-		end_note = ""
 		continuing = True
 		velocity = randint(-5,5)
 		distance = randint(1,4)*40
@@ -223,33 +160,44 @@ def main_game():
 					elif event.key == pygame.K_f:
 						firing = True
 
+			#Sets the new position of the player and the enemy
 			enemy_x -= 10
 			player_x -= velocity*10
 			pygame.time.wait(delay)
 			distance = enemy_x-player_x
 
+			#Checks if the distance is too large, or either jet has hit the edge of the screen
 			if (abs(distance)>500) or (player_x <0) or (enemy_x<0):
 				graphics.message_display("He got away",display,50,"bottom")
 				continuing = False
 
+			#Has the player fired
 			if (firing):
-				graphics.message_display("Pew Pew",display,50,"bottom")
 
-			#result,distance, velocity = get_move(velocity, distance,display)
+				#Sets the position of the bullet icons appearing on the screen
+				bullet_position = player_x-10
 
-			#elif result == 2:
-			#	end_note = "You shot him down"
-			#	continuing = False
-			#elif result == 3:
-			#	end_note = "He shot you first"
-			#	continuing = False
+				if velocity <0:
+					bullet_position = player_x-50
+
+				#Displays the bullet icons
+				graphics.display_icon(bulletsImg,bullet_position,player_y,display)
+
+				#Gets the result of the attack
+				result, message = fire(velocity, distance)
+
+				#Either one jet has been shot down, or missed
+				if result == 2 or result == 3:
+					graphics.message_display(message, display,25,"centre")
+					continuing = False
+				else:
+					graphics.message_display(message, display,25,"bottom")
 			
+			#Redraws the screen
 			pygame.display.update()
 			graphics.get_clock().tick(60)
 
 		pygame.quit()
-
-		print(end_note)
 
 		replay = util.play_again(replay)
 
