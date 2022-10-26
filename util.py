@@ -32,8 +32,8 @@ def start_game(title):
 	answer = False
 	clear_screen()
 	print(title)
-	print("Do you want instructions (Y/N)")
-	answer = yes_or_no(answer)
+
+	answer = ask_instructions()
 
 	return answer,replay
 

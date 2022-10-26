@@ -16,6 +16,8 @@ and provide a hint in the form of it being earlier or later.
 
 Okay, I have used breaks in this code, which I know I'm not supposed to (according to Djisktra),
 but since I lost my original conversion when my laptop died, I'm going to do it anyway.
+
+26 October 2022 - Tightened up the code a bit by calling functions from util.py
 """
 
 import util
@@ -94,10 +96,10 @@ def main_game(letter):
 
 def start_game():
 
-	util.clear_screen()
-	print("Robot Missile")
 
-	if (util.ask_instructions() == True):
+	answer,replay = util.start_game("Robot_Missile")
+
+	if answer:
 		instructions()
 	else:
 		print()
@@ -106,8 +108,6 @@ def start_game():
 		print("you have 4 changes")
 
 	input("Press enter to continue")
-
-	replay = True
 
 	while replay:
 
