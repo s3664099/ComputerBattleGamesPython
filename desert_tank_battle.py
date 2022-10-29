@@ -19,10 +19,8 @@ and fire at it. The player will set an elevation for the gun, and a direction. O
 the computer will determine if it is a hit or a miss. If it is a miss, the computer will determine
 how far off the shot is, and provide the player with a hint as to where the enemy is located
 
-TO DO:
-Move the calculations into a separate function
-Add a function where the enemy fires back if the enemy spots the player
-Redo the distance offset as that is incorrect
+Added functionality so that the enemy can shoot back at the player.
+
 """
 
 #Displays the instructions for the game
@@ -97,10 +95,24 @@ def get_result_distance(player_distance,distance,direction,player_direction):
 
 		return result_distance
 
+#Checks if the player has been spotted
+def check_spotted(spot_chance):
+
+	#Gets a random number
+	spotted = randint(0,20)
+	been_spotted = False
+
+	#Checks if the number is less than the chance
+	if spotted < spot_chance:
+		been_spotted = True
+
+	return been_spotted
+
 #Main game loop
 def main_game(direction,distance):
 
 	response = ""
+	spot_chance = 1
 
 	#The player has five goes
 	for x in range (5):
@@ -120,6 +132,14 @@ def main_game(direction,distance):
 			result_distance = get_result_distance(p_distance_1,distance,direction,player_direction)
 
 			print("Missile Landed {}{}".format(result_direction,result_distance))
+
+			#Checks to see if player has been spotted
+			if check_spotted(spot_chance):
+				response = "You have been spotted by the enemy\nhe shoots and destroys you"
+				x=5
+
+			#Chance of being spotted increases exponentially
+			spot_chance *= 2
 
 	if response == "":
 		response = "Disaster - you failed\nRetreat in disgrace"
