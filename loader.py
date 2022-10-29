@@ -14,6 +14,7 @@ import robot_missile
 import vital_message
 import shootout
 import desert_tank_battle
+import traitors_castle
 
 #Function that displays the games available, and allows the user to select them
 def select_game():
@@ -57,6 +58,8 @@ def select_game():
 			shootout.start_game()
 		elif response == '4':
 			desert_tank_battle.start_game()
+		elif response == '4':
+			traitors_castle.start_game()
 		elif response == '6':
 			Robot_Invaders.main()
 		elif response == '7':

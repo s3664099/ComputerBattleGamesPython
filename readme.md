@@ -58,6 +58,10 @@ one of them involving detecting key presses. However, there are a couple of prob
 
 I attempted to use it on one of the games, but unfortunately it didn't work as expected.
 
+**Pygame**
+This is also a solution, but it adds a lot more to the game than otherwise, and adds a lot of time to coding these
+games.
+
 <ins>Computer Crash</ins>
 I had already converted a number of the games across, but since I was using it for practice, silly me
 didn't save a copy, or upload it to github. As such, when my laptop failed, the linux partitions on the
@@ -85,7 +89,23 @@ difficulties
 
 **Shoot Out**
 
+This is basically a cow-boy game where you have to shoot before your opponent. You can't shoot until a certain time
+and then a timer is given for you to shoot. If you wait too long, you die, otherwise you shoot your opponent. However,
+further code has been added so that there is no guarantee that you, or your opponent, will hit you.
+
 **Desert Tank Battle**
+
+This game requires you to guess the location of the enemy. You enter a direction, between -90 and 90, and an elevation
+between 0 and 90. If you hit, you hit, however if you miss, a calculation is made as to the position, and a clue as to
+where the enemy is located is provided. Also, the enemy has a chance to shoot back at you, and the more you fire (you
+have 5 attempts) the more likely that the enemy will spot you and shoot.
+
+**Battle at Traitors Castle**
+
+This game involves an 'archer' appearing on the wall and the player needs to select the correct number between 0 and 9
+which corresponds with the archer's position. The play needs to type that number within five seconds otherwise the
+shot will be missed (as will the case if the wrong number is typed). A special archer will appear 10% of the time which
+will result in a greater score if hit.
 
 **Secret Weapon**
 
@@ -176,5 +196,6 @@ Added the rest of the games that were rescued from the crash, and converted *Rob
 **26 October 2022**
 Converted *Desert Tank Battle* as well as previous games. Also moved some of the common functions into the util file.
 
-##To Do
-
+**29 October 2022**
+Fixed up issues with *Desert Tank Battle* and added further function where your opponent shoots back. Added *Battle at
+Traitor's Castle* which finishes all of the games for this one

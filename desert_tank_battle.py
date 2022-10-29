@@ -28,15 +28,15 @@ def instructions():
 
 	print("Desert Tank Battle")
 	print("==================")
-	print("The last major stronghold of Robot forces outside the U.R.S* is hidden in ancient")
-	print("castle ruins in the middle ofthe desert. A fleet ofdesert hovertanks has beensent")
-	print("to destroy it and you are the commander. Your tank controls the five remaining")
-	print("missiles.")
+	print("The last major stronghold of Robot forces outside the U.R.S* is hidden in")
+	print("ancient castle ruins in the middle ofthe desert. A fleet of desert")
+	print("hovertanks has been sent to destroy it and you are the commander.")
+	print("Your tank controls the five remaining missiles.")
 	print("You must assess carefully the direction and elevation before you launch each")
-	print("one. Your computer will ask you for a direction angle between —90° (extreme left)")
-	print("and +90° (extreme right) and an elevation angle between 0° (along the ground) and")
-	print("90° (straight up in the air). The elevation determines the distance the missile will")
-	print("travel.")
+	print("one. Your computer will ask you for a direction angle between")
+	print("—90° (extreme left) and +90° (extreme right) and an elevation angle")
+	print("between 0° (along the ground) and 90° (straight up in the air). The")
+	print("elevation determines the distance the missile will travel.")
 	print("Is your aim good enough to destroy the robot stronghold?")
 	print("")
 	input("Press enter to continue:")
@@ -149,6 +149,9 @@ def main_game(direction,distance):
 def start_game():
 
 	answer,replay = util.start_game("Desert Tank Battle")
+
+	if answer:
+		instructions()
 
 	while replay:
 
