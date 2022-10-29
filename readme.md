@@ -83,6 +83,10 @@ do, which is having certain character worth more points than others. I have also
 function so the player can set a difficulty level, which means that the time limit is less for higher
 difficulties
 
+**Shoot Out**
+
+**Desert Tank Battle**
+
 **Secret Weapon**
 
 This is a simple guessing game. You enter a difficulty that is greater than 3, and based on that difficulty
@@ -169,6 +173,8 @@ Fixed up *Escape* and *Pirate Dogfight*. Added a couple more functions to util w
 **15 October 2022**
 Added the rest of the games that were rescued from the crash, and converted *Robot Missile*.
 
+**26 October 2022**
+Converted *Desert Tank Battle* as well as previous games. Also moved some of the common functions into the util file.
+
 ##To Do
-1) Rewrite Pirate Dogfight using graphics.
 

@@ -55,7 +55,7 @@ def select_game():
 			vital_message.start_game()
 		elif response == '3':
 			shootout.start_game()
-		elif response == '3':
+		elif response == '4':
 			desert_tank_battle.start_game()
 		elif response == '6':
 			Robot_Invaders.main()

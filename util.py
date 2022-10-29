@@ -26,8 +26,10 @@ all the games do at the beginning.
 Added another input with timeout function to return true or false
 """
 
+#Performs the start game functions.
 def start_game(title):
 
+	#Sets the replay flag
 	replay = True
 	answer = False
 	clear_screen()
